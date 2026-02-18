@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happiest Birthday</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:url("pink.jpg") center center/cover no-repeat fixed;
+    background-size:110%;
+    font-family:'Cormorant Garamond', serif;
+    color:#fff6fb;
+    overflow-x:hidden;
+    animation:zoomBg 25s ease-in-out infinite alternate;
+}
+
+@keyframes zoomBg{
+    from{ background-size:110%; }
+    to{ background-size:115%; }
+}
+
+/* HERO */
+
+.hero{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:0 10%;
+}
+
+.hero-content h1{
+    font-family:'Playfair Display', serif;
+    font-size:75px;
+    font-style:italic;
+    overflow:hidden;
+    white-space:nowrap;
+    border-right:3px solid #fff6fb;
+    width:0;
+    animation:typing 4s steps(40,end) forwards;
+}
+
+@keyframes typing{
+    from{ width:0 }
+    to{ width:100% }
+}
+
+.heart-main{
+    font-size:40px;
+    margin-left:10px;
+    color:white;
+    animation:heartPulse 1.5s infinite alternate;
+}
+
+@keyframes heartPulse{
+    from{ transform:scale(1); }
+    to{ transform:scale(1.2); }
+}
+
+.subtitle{
+    margin-top:60px;
+    font-size:32px;
+    font-style:italic;
+    color:#ffd9f3;
+    animation:floatLine 3s ease-in-out infinite;
+}
+
+@keyframes floatLine{
+    0%{ transform:translateY(0px); }
+    50%{ transform:translateY(-8px); }
+    100%{ transform:translateY(0px); }
+}
+
+/* SECTION */
+
+.section{
+    padding:120px 15%;
+    position:relative;
+}
+
+.slide-text,
+.memory-section p{
+    font-family:'Playfair Display', serif;
+    font-size:30px;
+    line-height:1.8;
+    color:#4a004f;
+    text-align:center;
+}
+
+/* ROSES */
+
+.rose-left,
+.rose-right{
+    position:absolute;
+    height:333px;
+    opacity:0.6;
+    z-index:0;
+}
+
+.rose-left{
+    left:30px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.rose-right{
+    right:30px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+/* MEMORY */
+
+.memory-section{
+    text-align:center;
+}
+
+.memory-section h2{
+    font-family:'Playfair Display', serif;
+    font-size:55px;
+    margin-bottom:30px;
+    color:#fff6fb;
+}
+
+.final-line{
+    text-align:center;
+    font-size:34px;
+    padding:100px 15% 40px 15%;
+    color:#fff6fb;
+    font-style:italic;
+}
+
+/* PETALS */
+
+.petal{
+    position:fixed;
+    top:-60px;
+    width:40px;
+    opacity:0.6;
+    pointer-events:none;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    0%{ transform:translateY(0) rotate(0deg); }
+    100%{ transform:translateY(120vh) rotate(360deg); }
+}
+
+/* POLAROIDS */
+
+.gallery{
+    padding:80px 10% 150px 10%;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:50px;
+}
+
+.polaroid{
+    background:white;
+    padding:15px 15px 40px 15px;
+    width:220px;
+    height:360px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.4);
+    transform:rotate(var(--rotate));
+    transition:0.4s;
+}
+
+.polaroid:hover{
+    transform:rotate(0deg) scale(1.08);
+}
+
+.polaroid img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+}
+
+.caption{
+    text-align:center;
+    margin-top:12px;
+    font-family:'Playfair Display', serif;
+    font-size:22px;
+    color:#333;
+}
+
+/* CONNECT HEARTS */
+
+.connect-heart{
+    position:fixed;
+    bottom:40px;
+    font-size:45px;
+    color:#ff2e63;
+    cursor:grab;
+    animation:beat 1s infinite;
+    user-select:none;
+    z-index:999;
+}
+
+#leftHeart{
+    left:40px;
+}
+
+#rightHeart{
+    right:40px;
+}
+
+@keyframes beat{
+    0%{ transform:scale(1); }
+    50%{ transform:scale(1.2); }
+    100%{ transform:scale(1); }
+}
+
+audio{
+    display:none;
+}
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px){
+
+    .hero-content h1{
+        font-size:40px;
+        white-space:normal;
+        border-right:none;
+        animation:none;
+        width:100%;
+    }
+
+    .subtitle{
+        font-size:20px;
+        margin-top:30px;
+    }
+
+    .slide-text,
+    .memory-section p{
+        font-size:20px;
+    }
+
+    .memory-section h2{
+        font-size:32px;
+    }
+
+    .final-line{
+        font-size:22px;
+        padding:60px 10%;
+    }
+
+    .gallery{
+        gap:25px;
+    }
+
+    .polaroid{
+        width:160px;
+        height:260px;
+    }
+
+    .polaroid img{
+        height:190px;
+    }
+
+    .connect-heart{
+        font-size:35px;
+        bottom:20px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="music2.mp3" type="audio/mp3">
+</audio>
+
+
+<script>
+document.addEventListener("click", function(){
+    document.getElementById("bgMusic").play();
+},{ once:true });
+</script>
+
+<!-- PETALS -->
+<img src="petal.png" class="petal" style="left:10%; animation-duration:5s;">
+<img src="petal.png" class="petal" style="left:30%; animation-duration:4s;">
+<img src="petal.png" class="petal" style="left:60%; animation-duration:5s;">
+<img src="petal.png" class="petal" style="left:80%; animation-duration:4s;">
+<img src="petal.png" class="petal" style="left:0%; animation-duration:5s;">
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>
+            Happiesttttttttttt Birthday, Akshata
+            <span class="heart-main">🤍</span>
+        </h1>
+        <div class="subtitle">
+            Twenty? That’s unfair… you were already glowing
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <img src="rose1.png" class="rose-left">
+    <img src="rose2.png" class="rose-right">
+    <div class="slide-text">
+        There are some people who arrive loudly. <br>
+        And then there are people who slowly become permanent. <br>
+        You never asked to be important. <br>
+        But you became.
+    </div>
+</section>
+
+<section class="section memory-section">
+    <h2>From second class to tenth class… 😊</h2>
+    <p>
+        Somehow we survived everything. <br>
+        Lollipops, chemistry unit one, 96%… <br>
+        and all the small chaos in between. 😄
+    </p>
+</section>
+
+<div class="final-line">
+    You don’t know how quietly important you are to me. 🤍 🤍 🤍
+</div>
+
+<section class="gallery">
+    <div class="polaroid" style="--rotate:-8deg;">
+        <img src="image2.jpeg">
+        <div class="caption">Then</div>
+    </div>
+    <div class="polaroid" style="--rotate:6deg;">
+        <img src="image3.jpeg">
+        <div class="caption">Now</div>
+    </div>
+    <div class="polaroid" style="--rotate:-4deg;">
+        <img src="image4.jpeg">
+        <div class="caption">Always</div>
+    </div>
+</section>
+
+<!-- TWO HEARTS -->
+<div id="leftHeart" class="connect-heart">❤️</div>
+<div id="rightHeart" class="connect-heart">❤️</div>
+
+<script>
+
+const leftHeart = document.getElementById("leftHeart");
+const rightHeart = document.getElementById("rightHeart");
+
+let dragging = null;
+let offsetX = 0;
+let offsetY = 0;
+
+function startDrag(e, heart) {
+    dragging = heart;
+    const touch = e.touches ? e.touches[0] : e;
+    offsetX = touch.clientX - heart.getBoundingClientRect().left;
+    offsetY = touch.clientY - heart.getBoundingClientRect().top;
+}
+
+function stopDrag() {
+    dragging = null;
+}
+
+function moveDrag(e) {
+    if (!dragging) return;
+
+    const touch = e.touches ? e.touches[0] : e;
+
+    dragging.style.left = touch.clientX - offsetX + "px";
+    dragging.style.top = touch.clientY - offsetY + "px";
+
+    const target = dragging === leftHeart ? rightHeart : leftHeart;
+
+    const rect1 = dragging.getBoundingClientRect();
+    const rect2 = target.getBoundingClientRect();
+
+    if (
+        rect1.left < rect2.right &&
+        rect1.right > rect2.left &&
+        rect1.top < rect2.bottom &&
+        rect1.bottom > rect2.top
+    ) {
+        window.location.href = "page3.html";
+    }
+}
+
+// Desktop
+[leftHeart, rightHeart].forEach(heart=>{
+    heart.addEventListener("mousedown", (e)=>startDrag(e, heart));
+});
+
+// Mobile
+[leftHeart, rightHeart].forEach(heart=>{
+    heart.addEventListener("touchstart", (e)=>startDrag(e, heart));
+});
+
+document.addEventListener("mouseup", stopDrag);
+document.addEventListener("touchend", stopDrag);
+
+document.addEventListener("mousemove", moveDrag);
+document.addEventListener("touchmove", moveDrag);
+
+
+</script>
+
+</body>
+</html>

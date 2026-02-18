@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Gift</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background:url("rainbow.jpg") center/cover no-repeat fixed;
+    overflow-x:hidden;
+    color:#ffffff;
+}
+
+.overlay{
+    background:rgba(255,255,255,0.45);
+    min-height:100vh;
+    padding:80px 12%;
+}
+
+h1,h2{
+    font-family:'Playfair Display', serif;
+    text-align:center;
+    margin-bottom:30px;
+    color:#7a2d2d;
+}
+
+h1{ font-size:50px; }
+h2{ font-size:36px; margin-top:60px; }
+
+p{
+    font-size:18px;
+    line-height:1.8;
+    text-align:center;
+    margin-bottom:30px;
+    color:#333;
+}
+
+.section{
+    margin-bottom:80px;
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.image-center{
+    display:flex;
+    justify-content:center;
+    margin:40px 0;
+}
+
+.image-center img{
+    width:75%;
+    max-width:600px;
+    border-radius:15px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+.final-photo img{
+    width:60%;
+    max-width:500px;
+}
+
+.operation{
+    font-size:24px;
+    font-weight:600;
+    margin-top:30px;
+    color:#7a2d2d;
+}
+
+/* NOTE SECTION */
+
+.note-section{
+    margin-top:100px;
+    text-align:center;
+}
+
+.note-wrapper{
+    display:flex;
+    justify-content:center;
+    margin-top:40px;
+}
+
+.note-card{
+    background:rgba(212, 236, 226, 0.65);
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.25);
+    transform:rotate(-3deg);
+}
+
+.note-card img{
+    width:400px;
+    max-width:90%;
+    border-radius:10px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.4);
+    animation:zoomNote 8s ease-in-out infinite alternate;
+}
+
+@keyframes zoomNote{
+    from{ transform:scale(1); }
+    to{ transform:scale(1.05); }
+}
+
+.note-final-line{
+    margin-top:40px;
+    font-size:22px;
+    font-style:italic;
+    color:#7a2d2d;
+}
+
+/* MICROPHONE TRANSITION */
+
+.voice-transition{
+    text-align:center;
+    margin-top:120px;
+    margin-bottom:80px;
+}
+
+.mic-text{
+    font-family:'Great Vibes', cursive;
+    font-size:34px;
+    color:#7a2d2d;
+    margin-bottom:20px;
+}
+
+.mic-icon{
+    font-size:60px;
+    cursor:pointer;
+    color:#2e8b57;
+    display:inline-block;
+    animation:micPulse 2s infinite ease-in-out;
+    user-select:none;
+}
+
+@keyframes micPulse{
+    0%{ transform:scale(1); text-shadow:0 0 10px #2e8b57; }
+    50%{ transform:scale(1.15); text-shadow:0 0 25px #2e8b57; }
+    100%{ transform:scale(1); text-shadow:0 0 10px #2e8b57; }
+}
+
+.fade-out{
+    animation:fadeOut 1.2s forwards;
+}
+
+@keyframes fadeOut{
+    to{ opacity:0; background:black; }
+}
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px){
+
+    .overlay{
+        padding:50px 8%;
+    }
+
+    h1{
+        font-size:32px;
+    }
+
+    h2{
+        font-size:24px;
+        margin-top:40px;
+    }
+
+    p{
+        font-size:16px;
+    }
+
+    .image-center img{
+        width:100%;
+    }
+
+    .note-card{
+        padding:20px;
+        transform:rotate(0deg);
+    }
+
+    .note-card img{
+        width:100%;
+    }
+
+    .operation{
+        font-size:18px;
+    }
+
+    .mic-text{
+        font-size:24px;
+    }
+
+    .mic-icon{
+        font-size:45px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+<audio id="bgMusic" loop>
+    <source src="music4.mp3" type="audio/mpeg">
+</audio>
+<div class="overlay" id="pageContent">
+
+    <div class="section">
+        <h1>The Gift That Wasn’t Just a Gift</h1>
+        <p>
+            I don’t know how this idea came to me.  
+            But the moment it did, it felt right.  
+            After that… I didn’t even think of another gift.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>How It Came Together</h2>
+        <p>
+            Once the idea settled in my heart, I couldn’t let it go.  
+            I quietly looked for a place that felt real…  
+            somewhere warm, somewhere honest, somewhere full of light.
+        </p>
+        <p>
+            I just wanted it to feel right —  
+            not big, not loud… just meaningful.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>The Action</h2>
+        <div class="image-center">
+            <img src="image5.jpeg">
+        </div>
+        <p>
+            Reaching there wasn’t easy.  
+            Rapid and Uber kept cancelling.  
+            But somehow… I made it.  
+            And when I stepped inside, something just felt different.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>The Impact</h2>
+        <div class="image-center">
+            <img src="image6.jpeg">
+        </div>
+        <p>
+            For a few hours, a smile scattered in that place.  
+            Her morning began with it.  
+            A special breakfast was served in your name.  
+            A few little hands held a poster with your name on it  
+            and made me promise I would carry their wishes back to you.
+        </p>
+        <p>
+            And I realised something…  
+            joy fits differently when it’s shared like this.
+        </p>
+    </div>
+
+    <div class="section final-photo">
+        <h2>For You</h2>
+        <div class="image-center">
+            <img src="image7.jpeg">
+        </div>
+        <p>
+            And at the end of it all…  
+            I stood there holding that poster, pretending I was calm —  
+            but inside I was smiling like an idiot.
+        </p>
+
+        <p class="operation">
+            Mission: Make Akshata Smile 😌💛  
+            Status: Hopefully Successful.
+        </p>
+    </div>
+
+    <div class="section note-section">
+        <h2>And This… I Didn’t Type.</h2>
+
+        <div class="note-wrapper">
+            <div class="note-card">
+                <img src="handwritten.jpeg">
+            </div>
+        </div>
+
+        <div class="note-final-line">
+            For a moment… it felt like you were there too.
+        </div>
+    </div>
+
+    <div class="voice-transition">
+        <div class="mic-text">There’s something I didn’t write…</div>
+        <div class="mic-icon" id="mic">🎤</div>
+    </div>
+
+</div>
+
+<script>
+
+const sections = document.querySelectorAll(".section");
+window.addEventListener("scroll", () => {
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 100){
+            section.classList.add("show");
+        }
+    });
+});
+
+let holdTimer;
+const mic = document.getElementById("mic");
+
+function startHold() {
+    holdTimer = setTimeout(() => {
+        document.getElementById("pageContent").classList.add("fade-out");
+        setTimeout(() => {
+            window.location.href = "page5.html";
+        }, 1200);
+    }, 2000);
+}
+
+function cancelHold() {
+    clearTimeout(holdTimer);
+}
+
+// Desktop
+mic.addEventListener("mousedown", startHold);
+mic.addEventListener("mouseup", cancelHold);
+mic.addEventListener("mouseleave", cancelHold);
+
+// Mobile
+mic.addEventListener("touchstart", startHold);
+mic.addEventListener("touchend", cancelHold);
+mic.addEventListener("touchcancel", cancelHold);
+
+
+mic.addEventListener("mouseup", () => {
+    clearTimeout(holdTimer);
+});
+
+mic.addEventListener("mouseleave", () => {
+    clearTimeout(holdTimer);
+});
+/* BACKGROUND MUSIC */
+
+const bgMusic = document.getElementById("bgMusic");
+bgMusic.volume = 0.4; // adjust volume here
+
+// Start music on first click anywhere
+document.body.addEventListener("click", function () {
+    bgMusic.play().catch(()=>{});
+}, { once: true });
+
+
+</script>
+
+</body>
+</html>

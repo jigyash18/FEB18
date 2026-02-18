@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Chapters We Never Named</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    font-family:'Libre Baskerville', serif;
+    overflow-x:hidden;
+}
+
+/* Soft Inner Frame */
+body::before{
+    content:"";
+    position:fixed;
+    top:18px;
+    left:18px;
+    right:18px;
+    bottom:18px;
+    border:6px solid #5b3a26;
+    pointer-events:none;
+    z-index:9999;
+}
+
+/* BLACK FADE */
+.fade-layer{
+    position:fixed;
+    inset:0;
+    background:#000;
+    z-index:999;
+    animation:fadeOut 1.8s ease forwards;
+}
+
+@keyframes fadeOut{
+    to{ opacity:0; visibility:hidden; }
+}
+
+.main{
+    opacity:0;
+    animation:showMain 1.5s ease forwards;
+    animation-delay:1.2s;
+    background:linear-gradient(135deg,#f3e8dc,#efe0d0,#f6ede4);
+}
+
+@keyframes showMain{
+    to{ opacity:1; }
+}
+
+/* HEADING */
+.heading{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.heading h1{
+    font-family:'Playfair Display', serif;
+    font-size:64px;
+    color:#5b4636;
+    opacity:0;
+    transform:translateY(40px);
+    animation:revealHeading 1.5s ease forwards;
+    animation-delay:1.5s;
+}
+
+@keyframes revealHeading{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.heading p{
+    margin-top:25px;
+    font-size:24px;
+    color:#5b4636;
+    opacity:0;
+    animation:fadeSubtitle 1.5s ease forwards;
+    animation-delay:2.5s;
+}
+
+@keyframes fadeSubtitle{
+    to{ opacity:1; }
+}
+
+/* SECTIONS */
+.section{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:100px 10%;
+    gap:60px;
+}
+
+.section img,
+.section video{
+    width:45%;
+    border-radius:16px;
+    box-shadow:0 25px 45px rgba(0,0,0,0.2);
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.section video{
+    pointer-events:none;
+}
+
+.section.active img,
+.section.active video{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.text{
+    width:55%;
+}
+
+.text h2{
+    font-family:'Playfair Display', serif;
+    font-size:36px;
+    margin-bottom:20px;
+    color:#5b4636;
+}
+
+.text p{
+    font-size:20px;
+    line-height:1.9;
+    color:#3b2f23;
+    min-height:200px;
+}
+
+/* DUO PHOTOS */
+.duo-photos{
+    width:45%;
+    display:flex;
+    gap:20px;
+}
+
+.duo-photos img{
+    width:50%;
+    border-radius:16px;
+    box-shadow:0 25px 45px rgba(0,0,0,0.2);
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.section.active .duo-photos img{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* NEW MAGIC CARPET SLIDE EFFECT */
+.magic-carpet {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f3e8dc 0%, #efe0d0 50%, #5b4636 100%);
+    opacity: 0;
+    z-index: 10000;
+    pointer-events: none;
+    transform: translateX(100vw);
+    transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.magic-carpet.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* NEXT PAGE BUTTON - SLIDE STYLE */
+.next-btn {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    padding: 20px 50px;
+    background: linear-gradient(135deg, #f6ede4, #efe0d0);
+    color: #5b4636;
+    border: 3px solid #5b4636;
+    border-radius: 50px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(50px) rotateX(15deg);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    margin: 0 auto;
+    box-shadow: 0 20px 40px rgba(91, 70, 54, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.next-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s;
+}
+
+.next-btn:hover::before {
+    left: 100%;
+}
+
+.next-btn:hover {
+    background: linear-gradient(135deg, #5b4636, #3b2f23);
+    color: #f6ede4;
+    transform: translateY(-5px) rotateX(0deg);
+    box-shadow: 0 30px 60px rgba(91, 70, 54, 0.4);
+}
+
+#finalSection.active .next-btn {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+}
+
+#finalSection {
+    justify-content: center;
+    padding: 150px 10%;
+}
+
+@media(max-width:900px){
+    .section{
+        flex-direction:column;
+    }
+    .section img,
+    .section video,
+    .text,
+    .duo-photos{
+        width:100%;
+    }
+    .duo-photos{
+        flex-direction:column;
+    }
+}
+/* ================= MOBILE IMPROVEMENTS ================= */
+
+@media (max-width: 768px){
+
+    .heading h1{
+        font-size:36px;
+        padding:0 10%;
+    }
+
+    .heading p{
+        font-size:18px;
+        padding:0 10%;
+    }
+
+    .section{
+        padding:60px 8%;
+        gap:30px;
+    }
+
+    .text h2{
+        font-size:24px;
+    }
+
+    .text p{
+        font-size:16px;
+        min-height:auto;
+    }
+
+    .duo-photos{
+        gap:15px;
+    }
+
+    .next-btn{
+        font-size:18px;
+        padding:15px 25px;
+        width:100%;
+        max-width:300px;
+    }
+
+    #finalSection{
+        padding:80px 8%;
+    }
+
+}
+.section img,
+.section video{
+    max-width:100%;
+    height:auto;
+}
+
+</style>
+</head>
+
+<body>
+<audio id="bgMusic" loop preload="auto">
+    <source src="myaudio.mpeg" type="audio/mpeg">
+</audio>
+
+<div class="fade-layer"></div>
+
+<div class="main">
+
+<!-- HEADING -->
+<div class="heading">
+    <h1>The Chapters We Never Named</h1>
+    <p>Some memories were never titled. But they stayed.</p>
+</div>
+
+<!-- PHOTO 1 -->
+<div class="section" id="photoSection">
+    <img src="10th.jpeg" alt="10th Class">
+    <div class="text">
+        <h2>Tenth Class</h2>
+        <p id="caption1"></p>
+    </div>
+</div>
+
+<!-- VIDEO -->
+<div class="section" id="videoSection">
+    <div class="text">
+        <h2>The First Picnic</h2>
+        <p id="caption2"></p>
+    </div>
+    <video src="picnic.mp4" autoplay loop muted playsinline></video>
+</div>
+
+<!-- PHOTO 3 -->
+<div class="section" id="photoSection3">
+    <img src="photo3.png">
+    <div class="text">
+        <h2>Just You & Me</h2>
+        <p id="caption3"></p>
+    </div>
+</div>
+
+<!-- PHOTO 4 & 5 -->
+<div class="section" id="photoSection4">
+    <div class="duo-photos">
+        <img src="photo4.jpeg">
+        <img src="photo5.jpeg">
+    </div>
+    <div class="text">
+        <h2>Time Did This</h2>
+        <p id="caption4"></p>
+    </div>
+</div>
+
+<!-- PHOTO 6 & 7 -->
+<div class="section" id="photoSection5">
+    <div class="text">
+        <h2>What If</h2>
+        <p id="caption5"></p>
+    </div>
+    <div class="duo-photos">
+        <img src="photo6.jpeg">
+        <img src="photo7.jpeg">
+    </div>
+</div>
+
+<!-- FINAL SECTION WITH NEXT BUTTON -->
+<div class="section" id="finalSection">
+    <button id="nextPageBtn" class="next-btn">I carried this memory somewhere brighter.</button>
+</div>
+
+</div>
+
+<!-- MAGIC CARPET TRANSITION -->
+<div class="magic-carpet" id="magicCarpet"></div>
+
+<script>
+window.addEventListener("DOMContentLoaded", function(){
+
+const caption1Text = `I don't even remember what the event was.
+But I remember this day.
+
+This was the first photo I ever kept.
+And I didn't know it would stay with me this long.
+
+You were Red House captain.
+And somehow, you already looked like someone meant to lead.`;
+
+const caption2Text = `I don't remember if this was before farewell or after.
+But I remember this was the first time we actually went somewhere together.
+
+Our first picnic.
+
+We were louder.
+Crazier.
+And somehow happier in the simplest way.
+
+I still remember how that day felt.
+And maybe one day, we'll go on more trips.`;
+
+const caption3Text = `This picture means more than it looks.
+It's the only photo where it's just you and me.
+I didn't realize that day it would become the only one I'd hold onto for years.
+Maybe that's why this one feels so quietly special to me.`;
+
+const caption4Text = `I don't know what magic happened after tenth,
+but you've only become more charming with time.
+
+And honestly,
+if I had been there,
+I would've quietly claimed the role of your personal photographer.
+
+Don't mind me saying this,
+but I'm convinced I would've captured you
+a little closer to how I see you.`;
+
+const caption5Text = `What if these weren't just imagined moments?
+
+What if these weren't just pictures created by prompts…
+but memories we actually lived?
+
+I miss you.
+But I don't want to keep missing you in imagination.
+
+I want to stand there.
+I want to take these pictures for real.
+And turn every "what if" into "we did."`;
+
+function typeWriter(element, text, speed=25){
+    if(window.innerWidth < 768){
+        speed = 15; // faster typing on mobile
+    }
+
+    element.innerHTML="";
+    let i=0;
+
+    function typing(){
+        if(i<text.length){
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typing,speed);
+        }
+    }
+    typing();
+}
+
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("active");
+
+            if(entry.target.id==="photoSection"){
+                typeWriter(document.getElementById("caption1"),caption1Text);
+            }
+            if(entry.target.id==="videoSection"){
+                typeWriter(document.getElementById("caption2"),caption2Text);
+            }
+            if(entry.target.id==="photoSection3"){
+                typeWriter(document.getElementById("caption3"),caption3Text);
+            }
+            if(entry.target.id==="photoSection4"){
+                typeWriter(document.getElementById("caption4"),caption4Text);
+            }
+            if(entry.target.id==="photoSection5"){
+                typeWriter(document.getElementById("caption5"),caption5Text);
+            }
+        }
+    });
+},{ threshold:0.6 });
+
+// Observe all sections including final section
+document.querySelectorAll(".section").forEach(sec=>{
+    observer.observe(sec);
+});
+
+// MAGIC CARPET TRANSITION
+const nextPageBtn = document.getElementById("nextPageBtn");
+const magicCarpet = document.getElementById("magicCarpet");
+
+nextPageBtn.addEventListener("click", function() {
+    // Trigger magic carpet slide
+    magicCarpet.classList.add("active");
+    
+    // Navigate after transition completes
+    setTimeout(() => {
+        window.location.href = "page4.html"; // Change to your next page
+    }, 1200);
+});
+
+// Auto-scroll to final section after last caption finishes
+const checkCaption5 = setInterval(() => {
+    const caption5 = document.getElementById("caption5");
+    if (caption5 && caption5.textContent.trim().length >= caption5Text.length * 0.9) {
+        setTimeout(() => {
+            document.getElementById("finalSection").scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }, 800);
+        clearInterval(checkCaption5);
+    }
+}, 200);
+const bgMusic = document.getElementById("bgMusic");
+bgMusic.volume = 0.4;
+
+document.body.addEventListener("click", function () {
+    bgMusic.play().catch(() => {});
+}, { once: true });
+
+
+});
+</script>
+
+</body>
+</html>
